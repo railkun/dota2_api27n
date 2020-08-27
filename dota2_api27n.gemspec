@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'dota2_api27n'
-  s.version       = '1.0.2'
+  s.version       = '1.0.3'
   s.date          = '2020-08-25'
   s.summary       = 'Dota2_Api27n - Simple gem for parse dota leagues'
   s.author        = 'Oleksii Protsenko'

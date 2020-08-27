@@ -3,6 +3,8 @@ require 'pry'
 
 require_relative 'dota2_api27n/models/league'
 require_relative 'dota2_api27n/client'
+require_relative 'dota2_api27n/exceptions/request_error'
+require_relative 'dota2_api27n/exceptions/request_empty'
 
 module Dota2Api27n
 
@@ -19,7 +21,14 @@ module Dota2Api27n
       leagues = leagues['results']
     end
 
+    raise RequestEmpty if leagues.empty?
+
     leagues.map { |league| League.new(league) }
+  end
+
+  def self.total_leagues
+    total_leagues = request(League::ENDPOINT)
+    total_leagues['meta']['total']
   end
 
   private
