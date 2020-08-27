@@ -6,12 +6,14 @@ require_relative 'dota2_api27n/client'
 
 module Dota2Api27n
 
-  def self.leagues
-    leagues = request(League::ENDPOINT, League::OPTIONS)
+  def self.leagues(offset: 0, limit: 100)
+    options = "?offset=#{offset}&limit=#{limit}"
+
+    leagues = request(League::ENDPOINT, options)
 
     if leagues.headers['x-ratelimit-remaining'].to_i < 0
       sleep leagues.headers['x-ratelimit-reset'].to_i
-      leagues = request(League::ENDPOINT, League::OPTIONS)
+      leagues = request(League::ENDPOINT, options)
       leagues = leagues['results']
     else
       leagues = leagues['results']

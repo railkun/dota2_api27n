@@ -1,7 +1,6 @@
 module Dota2Api27n
   class League
     ENDPOINT = 'leagues'.freeze
-    OPTIONS  = '?offset=0&limit=100'.freeze
 
     attr_reader :league_id, :name, :tier, :region, :url, :description, :start_timestamp,
                 :end_timestamp, :status, :total_prize_pool, :is_live
