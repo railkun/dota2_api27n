@@ -24,9 +24,9 @@ RSpec.describe Dota2Api27n, :vcr do
     end
   end
 
-  context 'When call Dota2Api27n.leagues' do
+  context 'When call Dota2Api27n.total_leagues' do
     it 'success call Dota2Api27n.total_leagues' do
-      expect(Dota2Api27n.total_leagues).to eq 291
+      expect(Dota2Api27n.total_leagues).to eq 298
     end
   end
 end

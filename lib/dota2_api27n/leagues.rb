@@ -23,7 +23,7 @@ module Dota2Api27n
         leagues
       end
 
-      raise RequestEmpty if leagues.empty?
+      raise RequestEmpty if leagues['results'].empty?
 
       results = leagues['results'].map { |league| League.new(league) }
       total_leagues = leagues['meta']['total']
