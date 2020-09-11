@@ -2,16 +2,17 @@ module Dota2Api27n
   class Leagues
     attr_reader :leagues, :total_leagues
 
-    def initialize(offset, limit)
-      leagues_request = leagues_request(offset, limit)
+    def self.leagues(offset, limit)
+      all_leagues(offset, limit)[:results]
+    end
 
-      @leagues = leagues_request[:results]
-      @total_leagues = leagues_request[:total_leagues]
+    def self.total_leagues(offset, limit)
+      all_leagues(offset, limit)[:total_leagues]
     end
 
     private
 
-    def leagues_request(offset, limit)
+    def self.all_leagues(offset, limit)
       options = "?offset=#{offset}&limit=#{limit}"
 
       leagues = request(League::ENDPOINT, options)
@@ -31,7 +32,7 @@ module Dota2Api27n
       {results: results, total_leagues: total_leagues}
     end
 
-    def request(method, options = nil)
+    def self.request(method, options = nil)
       client = Client.new.get(method, options)
     end
   end
